@@ -11,8 +11,31 @@
         WindowStartupLocation="CenterScreen" 
         WindowState="Normal" 
         ResizeMode="NoResize">
-    
-    <Grid>
+
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         
+        <DataGrid Grid.Row="0"
+                   x:Name="Products_List" 
+                   IsReadOnly="True" 
+                   AutoGenerateColumns="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="1" Binding="{Binding O_OLD_NAME}"  Width="auto" MinWidth="2" MaxWidth="500"></DataGridTextColumn>
+                <DataGridTextColumn Header="2" Binding="{Binding O_NEW_NAME}"  Width="auto" MinWidth="20" MaxWidth="500"></DataGridTextColumn>
+                <DataGridTextColumn Header="3" Binding="{Binding O_OLD_CATEGORY}"  Width="auto" MinWidth="20" MaxWidth="500"></DataGridTextColumn>
+                <DataGridTextColumn Header="4" Binding="{Binding O_NEW_CATEGORY}"  Width="auto" MinWidth="20" MaxWidth="500"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
     </Grid>
 </Window>
