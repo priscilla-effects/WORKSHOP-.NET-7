@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Список продуктов"
         Height="450" 
-        Width="600"
+        Width="700"
         Background="#00adef"
         WindowStartupLocation="CenterScreen" 
         WindowState="Normal" 
@@ -30,14 +30,14 @@
                   AutoGenerateColumns="False">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding id}"  Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Бренд" Binding="{Binding p_brand}"  Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Название" Binding="{Binding p_name}"  Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Описание" Binding="{Binding p_description}"  Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Цена" Binding="{Binding p_price}"  Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Кол-во" Binding="{Binding p_quantity}"  Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Поставщик" Binding="{Binding p_supplier}"  Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Категория" Binding="{Binding pct_category}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding p_id}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Brand" Binding="{Binding p_brand}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding p_name}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Description" Binding="{Binding p_description}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Price" Binding="{Binding p_price}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding p_quantity}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Supplier" Binding="{Binding p_supplier}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Category" Binding="{Binding ct_id}"  Width="auto"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

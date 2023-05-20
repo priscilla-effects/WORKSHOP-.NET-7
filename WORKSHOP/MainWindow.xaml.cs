@@ -21,8 +21,6 @@ namespace WORKSHOP
         public MainWindow()
         {
             InitializeComponent();
-            var con = new NpgsqlConnection(connectionString: "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;");
-            con.Open();
         }
 
         private void Button_Order(object sender, RoutedEventArgs e)
