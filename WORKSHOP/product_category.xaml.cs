@@ -1,6 +1,8 @@
-﻿using System;
+﻿using NpgsqlTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace WORKSHOP
 {
-    /// <summary>
-    /// Логика взаимодействия для product_category.xaml
-    /// </summary>
     public partial class product_category : Window
     {
         public product_category()

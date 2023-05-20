@@ -7,35 +7,68 @@
         mc:Ignorable="d"
         Title="Список продуктов"
         Height="450" 
-        Width="400"
+        Width="600"
+        Background="#00adef"
         WindowStartupLocation="CenterScreen" 
         WindowState="Normal" 
         ResizeMode="NoResize">
 
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
+
         <DataGrid Grid.Row="0"
-                   x:Name="Products_List" 
-                   IsReadOnly="True" 
-                   AutoGenerateColumns="False">
+                  Grid.ColumnSpan="2"
+                  x:Name="Products_DG" 
+                  IsReadOnly="True" 
+                  AutoGenerateColumns="False">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="1" Binding="{Binding O_OLD_NAME}"  Width="auto" MinWidth="2" MaxWidth="500"></DataGridTextColumn>
-                <DataGridTextColumn Header="2" Binding="{Binding O_NEW_NAME}"  Width="auto" MinWidth="20" MaxWidth="500"></DataGridTextColumn>
-                <DataGridTextColumn Header="3" Binding="{Binding O_OLD_CATEGORY}"  Width="auto" MinWidth="20" MaxWidth="500"></DataGridTextColumn>
-                <DataGridTextColumn Header="4" Binding="{Binding O_NEW_CATEGORY}"  Width="auto" MinWidth="20" MaxWidth="500"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Бренд" Binding="{Binding p_brand}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding p_name}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Описание" Binding="{Binding p_description}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding p_price}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding p_quantity}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Поставщик" Binding="{Binding p_supplier}"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Категория" Binding="{Binding pct_category}"  Width="auto"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
+        <Button Grid.Row="1"
+                Grid.Column="0"
+                Content="*"
+                Foreground="White" 
+                Background="DarkCyan"
+                FontFamily="EB Garamond" 
+                FontSize="35" 
+                Width="150"
+                BorderThickness="3"
+                BorderBrush="Black"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center" 
+                HorizontalContentAlignment="Center"/>
 
-
-
+        <Button Grid.Row="1"
+                Grid.Column="1"
+                Content="*"
+                Foreground="White" 
+                Background="DarkCyan"
+                FontFamily="EB Garamond" 
+                FontSize="35" 
+                Width="150"
+                BorderThickness="3"
+                BorderBrush="Black"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center" 
+                HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>
