@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,33 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WORKSHOP
 {
-    public partial class MainWindow : Window
+    public partial class AddItem : Window
     {
-        public MainWindow()
+        public AddItem()
         {
             InitializeComponent();
         }
 
-        private void Button_Order(object sender, RoutedEventArgs e)
+        private void Button_Add(object sender, RoutedEventArgs e)
         {
-            OrderClient OrderClient = new();
-            OrderClient.Show();
+            ProductCategory ProductCategory = new();
+            ProductCategory.Show();
             Close();
         }
 
-        private void Button_Supply(object sender, RoutedEventArgs e)
-        {
-            SupplierSupply SupplierSupply = new();
-            SupplierSupply.Show();
-            Close();
-        }
-
-        private void Button_Product(object sender, RoutedEventArgs e)
+        private void Button_Close(object sender, RoutedEventArgs e)
         {
             ProductCategory ProductCategory = new();
             ProductCategory.Show();

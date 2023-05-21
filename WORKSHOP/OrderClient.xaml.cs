@@ -14,14 +14,18 @@ using System.Windows.Shapes;
 
 namespace WORKSHOP
 {
-    /// <summary>
-    /// Логика взаимодействия для order_client.xaml
-    /// </summary>
-    public partial class order_client : Window
+    public partial class OrderClient : Window
     {
-        public order_client()
+        public OrderClient()
         {
             InitializeComponent();
+        }
+
+        private void Button_Close(object sender, RoutedEventArgs e)
+        {
+            MainWindow MainWindow = new();
+            MainWindow.Show();
+            Close();
         }
     }
 }

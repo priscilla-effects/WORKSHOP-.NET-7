@@ -14,14 +14,18 @@ using System.Windows.Shapes;
 
 namespace WORKSHOP
 {
-    /// <summary>
-    /// Логика взаимодействия для supplier_supply.xaml
-    /// </summary>
-    public partial class supplier_supply : Window
+    public partial class SupplierSupply : Window
     {
-        public supplier_supply()
+        public SupplierSupply()
         {
             InitializeComponent();
+        }
+
+        private void Button_Close(object sender, RoutedEventArgs e)
+        {
+            MainWindow MainWindow = new();
+            MainWindow.Show();
+            Close();
         }
     }
 }

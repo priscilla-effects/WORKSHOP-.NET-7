@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WORKSHOP"
         mc:Ignorable="d"
         Title="Мастерская Аудио-оборудования: Priscilla Custom Effects" 
-        Height="450" Width="800"
+        Height="450" 
+        Width="800"
         Background="#00adef"
         WindowStartupLocation="CenterScreen" 
         WindowState="Normal" 
@@ -40,7 +41,7 @@
             </Label.BitmapEffect>
         </Label>
 
-            <Button Grid.Row="1"
+        <Button Grid.Row="1"
                 Grid.Column="0"
                 Content="ЗАКАЗЫ"
                 Foreground="black" 
@@ -48,7 +49,7 @@
                 FontFamily="EB Garamond" 
                 FontSize="35" 
                 Width="220"
-                    Height="60"
+                Height="60"
                 BorderThickness="3"
                 BorderBrush="Black"
                 HorizontalAlignment="Center" 

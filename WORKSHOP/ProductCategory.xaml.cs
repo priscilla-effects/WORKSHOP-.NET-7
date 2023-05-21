@@ -20,22 +20,43 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace WORKSHOP
 {
-    public partial class product_category : Window
+    public partial class ProductCategory : Window
     {
-        private DataSet ds = new DataSet();
-        private DataTable dt = new DataTable();
-        public product_category()
+        private readonly DataSet ds = new();
+        private readonly DataTable dt = new();
+        public ProductCategory()
         {
             InitializeComponent();
             var con = new NpgsqlConnection(connectionString:"Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;");
             con.Open();
             string sql = ("SELECT * FROM public.\"Product\"");
-            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(sql, con);
+            NpgsqlDataAdapter adapter = new(sql, con);
             ds.Reset();
             adapter.Fill(ds);
             dt = ds.Tables[0];
             Products_DG.ItemsSource = dt.DefaultView;
             con.Close();
+        }
+
+        private void Button_Add(object sender, RoutedEventArgs e)
+        {
+            AddItem AddItem = new();
+            AddItem.Show();
+            Close();
+        }
+
+        private void Button_Delete(object sender, RoutedEventArgs e)
+        {
+            DeleteItem DeleteItem = new();
+            DeleteItem.Show();
+            Close();
+        }
+
+        private void Button_Close(object sender, RoutedEventArgs e)
+        {
+            MainWindow MainWindow = new();
+            MainWindow.Show();
+            Close();
         }
     }
 }
