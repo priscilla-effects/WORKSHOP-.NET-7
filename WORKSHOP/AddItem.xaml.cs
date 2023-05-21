@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,12 @@ namespace WORKSHOP
             InitializeComponent();
         }
 
+        private void PreviewTextInputHandler(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = MyRegex();
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
         private void Button_Add(object sender, RoutedEventArgs e)
         {
             ProductCategory ProductCategory = new();
@@ -34,5 +41,8 @@ namespace WORKSHOP
             ProductCategory.Show();
             Close();
         }
+
+        [GeneratedRegex("[^0-9]+")]
+        private static partial Regex MyRegex();
     }
 }

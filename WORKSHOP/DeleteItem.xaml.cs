@@ -44,14 +44,14 @@ namespace WORKSHOP
                         command.ExecuteNonQuery();
                     }
                 }
-                MessageBox.Show("Row deleted successfully.");
+                MessageBox.Show("Строка добавлена успешно.");
             }
             catch (Exception)
             {
-                MessageBox.Show($"Error deleting row.");
+                MessageBox.Show($"Ошибка добавления строки.");
 
-                ProductCategory ProductCategory = new();
-                ProductCategory.Show();
+                DeleteItem DeleteItem = new();
+                DeleteItem.Show();
             }
 
             Close();
