@@ -49,6 +49,9 @@ namespace WORKSHOP
             catch (Exception)
             {
                 MessageBox.Show($"Error deleting row.");
+
+                ProductCategory ProductCategory = new();
+                ProductCategory.Show();
             }
 
             Close();
