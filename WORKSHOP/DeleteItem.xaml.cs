@@ -46,6 +46,10 @@ namespace WORKSHOP
                     }
                 }
                 MessageBox.Show("Строка удалена успешно.");
+
+                ProductCategory ProductCategory = new();
+                ProductCategory.Show();
+                Close();
             }
             catch (Exception)
             {
@@ -63,7 +67,7 @@ namespace WORKSHOP
             Close();
         }
 
-        [GeneratedRegex("[^1-9]+")]
+        [GeneratedRegex("[^0-9]+")]
         private static partial Regex MyRegex();
     }
 }
