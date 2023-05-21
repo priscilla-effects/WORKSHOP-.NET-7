@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace WORKSHOP
 {
-    /// <summary>
-    /// Логика взаимодействия для DeleteItem.xaml
-    /// </summary>
     public partial class DeleteItem : Window
     {
         public DeleteItem()
@@ -49,10 +46,12 @@ namespace WORKSHOP
                 }
                 MessageBox.Show("Row deleted successfully.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error deleting Row: {ex.Message}");
+                MessageBox.Show($"Error deleting row.");
             }
+
+            Close();
         }
 
         private void Button_Close(object sender, RoutedEventArgs e)
@@ -62,7 +61,7 @@ namespace WORKSHOP
             Close();
         }
 
-        [GeneratedRegex("[^0-9]+")]
+        [GeneratedRegex("[^1-9]+")]
         private static partial Regex MyRegex();
     }
 }

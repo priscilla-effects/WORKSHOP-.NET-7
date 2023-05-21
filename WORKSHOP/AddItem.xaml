@@ -17,10 +17,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
@@ -32,6 +32,7 @@
                 FontFamily="EB Garamond" 
                 FontSize="35" 
                 Width="80"
+                Height="80"
                 BorderThickness="3"
                 BorderBrush="Black"
                 HorizontalAlignment="Center" 
@@ -41,13 +42,14 @@
                 Click="Button_Add"/>
 
         <Button Grid.Row="2"
-                Grid.Column="1"
+                Grid.Column="2"
                 Content="→"
                 Foreground="White" 
                 Background="Black"
                 FontFamily="EB Garamond" 
                 FontSize="35" 
                 Width="80"
+                Height="80"
                 BorderThickness="3"
                 BorderBrush="Black"
                 HorizontalAlignment="Center" 

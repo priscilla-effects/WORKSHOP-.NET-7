@@ -29,7 +29,7 @@
                   x:Name="Products_DG" 
                   IsReadOnly="True" 
                   AutoGenerateColumns="False"
-                  CanUserResizeColumns="False"
+                  CanUserResizeColumns="True"
                   CanUserResizeRows="False"
                   CanUserReorderColumns="False">
 
