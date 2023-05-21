@@ -30,31 +30,30 @@ namespace WORKSHOP
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
         private void Button_Delete(object sender, RoutedEventArgs e)
         {
             try
             {
-                using (NpgsqlConnection con = new NpgsqlConnection(connectionString:"Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;"))
+                using (NpgsqlConnection con = new NpgsqlConnection(conString))
                 {
                     con.Open();
-                    using (NpgsqlCommand command = new NpgsqlCommand())
+                    using (NpgsqlCommand cmd = new NpgsqlCommand())
                     {
-                        command.Connection = con;
-                        command.CommandText = $"DELETE FROM public.\"Product\" WHERE p_id = {numberTextBox.Text};";
-                        command.ExecuteNonQuery();
+                        cmd.Connection = con;
+                        cmd.CommandText = $"DELETE FROM public.\"Product\" WHERE p_id = {numberTextBox.Text};";
+                        cmd.ExecuteNonQuery();
                     }
                 }
-                MessageBox.Show("Строка добавлена успешно.");
+                MessageBox.Show("Строка удалена успешно.");
             }
             catch (Exception)
             {
-                MessageBox.Show($"Ошибка добавления строки.");
+                MessageBox.Show($"Ошибка удаления строки.");
 
                 DeleteItem DeleteItem = new();
                 DeleteItem.Show();
             }
-
-            Close();
         }
 
         private void Button_Close(object sender, RoutedEventArgs e)
