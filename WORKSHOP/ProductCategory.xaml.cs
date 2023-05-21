@@ -24,10 +24,11 @@ namespace WORKSHOP
     {
         private readonly DataSet ds = new();
         private readonly DataTable dt = new();
+        string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
         public ProductCategory()
         {
             InitializeComponent();
-            var con = new NpgsqlConnection(connectionString:"Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;");
+            var con = new NpgsqlConnection(conString);
             con.Open();
             string sql = ("SELECT * FROM public.\"Product\"");
             NpgsqlDataAdapter adapter = new(sql, con);

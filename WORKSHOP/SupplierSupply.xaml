@@ -26,7 +26,7 @@
 
         <DataGrid Grid.Row="0"
                   Grid.ColumnSpan="3"
-                  x:Name="Products_DG" 
+                  x:Name="Supply_DG" 
                   IsReadOnly="True" 
                   AutoGenerateColumns="False"
                   CanUserResizeColumns="False"
@@ -34,19 +34,16 @@
                   CanUserReorderColumns="False">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding p_id}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Brand" Binding="{Binding p_brand}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Name" Binding="{Binding p_name}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Binding="{Binding p_description}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Price" Binding="{Binding p_price}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding p_quantity}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Category" Binding="{Binding ct_id}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding sp_id}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Binding="{Binding sp_status}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding sp_date}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Money" Binding="{Binding sp_money}" Width="auto"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
         <Button Grid.Row="1"
                 Grid.Column="0"
-                Content="-"
+                Content="Добавить"
                 Foreground="Black" 
                 Background="White"
                 FontFamily="EB Garamond" 
@@ -57,11 +54,12 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center" 
-                HorizontalContentAlignment="Center"/>
+                HorizontalContentAlignment="Center"
+                Click="Button_Add"/>
 
         <Button Grid.Row="1"
                 Grid.Column="1"
-                Content="-"
+                Content="Удалить"
                 Foreground="Black" 
                 Background="White"
                 FontFamily="EB Garamond" 
@@ -72,7 +70,8 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center" 
-                HorizontalContentAlignment="Center"/>
+                HorizontalContentAlignment="Center" 
+                Click="Button_Delete"/>
 
         <Button Grid.Row="1"
                 Grid.Column="2"
