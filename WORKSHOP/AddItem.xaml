@@ -22,7 +22,6 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -36,7 +35,8 @@
                    FontFamily="EB Garamond" 
                    FontSize="25" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">Бренд</TextBlock>
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">Бренд</TextBlock>
         
         <TextBlock Grid.Row="1"
                    Grid.ColumnSpan="3"
@@ -44,7 +44,8 @@
                    FontFamily="EB Garamond" 
                    FontSize="25" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">Название</TextBlock>
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">Название</TextBlock>
 
         <TextBlock Grid.Row="2"
                    Grid.ColumnSpan="3"
@@ -52,7 +53,8 @@
                    FontFamily="EB Garamond" 
                    FontSize="25" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">Описание</TextBlock>
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">Описание</TextBlock>
 
         <TextBlock Grid.Row="3"
                    Grid.ColumnSpan="3"
@@ -60,7 +62,8 @@
                    FontFamily="EB Garamond" 
                    FontSize="25" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">Цена</TextBlock>
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">Цена</TextBlock>
 
         <TextBlock Grid.Row="4"
                    Grid.ColumnSpan="3"
@@ -68,7 +71,8 @@
                    FontFamily="EB Garamond" 
                    FontSize="25" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">Количество</TextBlock>
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">Количество</TextBlock>
 
         <TextBlock Grid.Row="5"
                    Grid.ColumnSpan="3"
@@ -76,15 +80,8 @@
                    FontFamily="EB Garamond" 
                    FontSize="25" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">Поставщик</TextBlock>
-
-        <TextBlock Grid.Row="6"
-                   Grid.ColumnSpan="3"
-                   Foreground="Black" 
-                   FontFamily="EB Garamond" 
-                   FontSize="25" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">Категория</TextBlock>
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">Категория</TextBlock>
 
         <TextBox x:Name="brand"
                  Grid.Row="0"
@@ -148,21 +145,8 @@
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center"/>
 
-        <TextBox x:Name="supplier"
-                 Grid.Row="5"
-                 Grid.ColumnSpan="3"
-                 Height="40"
-                 Width="260"
-                 FontFamily="EB Garamond" 
-                 FontSize="30" 
-                 HorizontalAlignment="Center" 
-                 VerticalAlignment="Bottom"
-                 VerticalContentAlignment="Center" 
-                 HorizontalContentAlignment="Center"/>
-
         <TextBox x:Name="category"
-                 PreviewTextInput="Category"
-                 Grid.Row="6"
+                 Grid.Row="5"
                  Grid.ColumnSpan="3"
                  Height="40"
                  Width="260"
