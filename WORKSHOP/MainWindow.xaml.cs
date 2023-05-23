@@ -43,5 +43,12 @@ namespace WORKSHOP
             ProductCategory.Show();
             Close();
         }
+
+        private void Button_Clients(object sender, RoutedEventArgs e)
+        {
+            ClientsList ClientsList = new();
+            ClientsList.Show();
+            Close();
+        }
     }
 }

@@ -32,13 +32,13 @@ namespace WORKSHOP
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void date_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Date_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             date.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
-        string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
-        string sql_order = "INSERT INTO public.\"Order\" (c_id, p_id, o_date) VALUES (@value1, @value2, @value3)";
+        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
+        readonly string sql_order = "INSERT INTO public.\"Order\" (c_id, p_id, o_date) VALUES (@value1, @value2, @value3)";
         private void Button_Add(object sender, RoutedEventArgs e)
         {
             try
@@ -46,13 +46,11 @@ namespace WORKSHOP
                 using (NpgsqlConnection con = new NpgsqlConnection(conString))
                 {
                     con.Open();
-                    using (NpgsqlCommand cmd = new NpgsqlCommand(sql_order, con))
-                    {
-                        cmd.Parameters.AddWithValue("value1", Int32.Parse(fio.Text));
-                        cmd.Parameters.AddWithValue("value2", Int32.Parse(product.Text));
-                        cmd.Parameters.AddWithValue("value3", date.Text);
-                        cmd.ExecuteNonQuery();
-                    }
+                    using NpgsqlCommand cmd = new NpgsqlCommand(sql_order, con);
+                    cmd.Parameters.AddWithValue("value1", Int32.Parse(fio.Text));
+                    cmd.Parameters.AddWithValue("value2", Int32.Parse(product.Text));
+                    cmd.Parameters.AddWithValue("value3", date.Text);
+                    cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Строка добавлена успешно.");
 

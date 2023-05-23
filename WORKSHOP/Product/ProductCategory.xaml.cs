@@ -24,7 +24,7 @@ namespace WORKSHOP
     {
         private readonly DataSet ds = new();
         private readonly DataTable dt = new();
-        string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
+        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
         public ProductCategory()
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace WORKSHOP
 
         private void Button_Edit(object sender, RoutedEventArgs e)
         {
-            EditItem EditItem = new EditItem();
+            EditItem EditItem = new();
             EditItem.Show();
             Close();
         }

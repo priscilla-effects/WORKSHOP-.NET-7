@@ -124,7 +124,7 @@
                  HorizontalContentAlignment="Center"/>
 
         <TextBox x:Name="date"
-                 MouseDoubleClick="date_MouseDoubleClick"
+                 MouseDoubleClick="Date_MouseDoubleClick"
                  Grid.Row="4"
                  Grid.ColumnSpan="3"
                  Height="40"

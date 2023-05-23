@@ -20,8 +20,8 @@ namespace WORKSHOP
     {
         private readonly DataSet ds = new();
         private readonly DataTable dt = new();
-        string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
-        string sql_order = ("SELECT * FROM public.\"Order\"");
+        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
+        readonly string sql_order = ("SELECT * FROM public.\"Order\"");
         public OrderClient()
         {
             InitializeComponent();
