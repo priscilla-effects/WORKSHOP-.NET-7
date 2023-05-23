@@ -17,24 +17,32 @@ namespace WORKSHOP
         {
             try
             {
-                using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                if (!(string.IsNullOrEmpty(fio.Text) 
+                    || string.IsNullOrEmpty(address.Text) 
+                    || string.IsNullOrEmpty(phone_number.Text)))
                 {
-                    con.Open();
-                    using NpgsqlCommand cmd = new NpgsqlCommand(sql_client, con);
-                    cmd.Parameters.AddWithValue("value1", fio.Text);
-                    cmd.Parameters.AddWithValue("value2", address.Text);
-                    cmd.Parameters.AddWithValue("value3", phone_number.Text);
-                    cmd.ExecuteNonQuery();
+                    using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                    {
+                        con.Open();
+                        using NpgsqlCommand cmd = new NpgsqlCommand(sql_client, con);
+                        cmd.Parameters.AddWithValue("value1", fio.Text);
+                        cmd.Parameters.AddWithValue("value2", address.Text);
+                        cmd.Parameters.AddWithValue("value3", phone_number.Text);
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Строка добавлена успешно.");
+                    ClientsList ClientsList = new();
+                    ClientsList.Show();
+                    Close();
                 }
-                MessageBox.Show("Строка добавлена успешно.");
-
-                ClientsList ClientsList = new();
-                ClientsList.Show();
-                Close();
+                else
+                {
+                    MessageBox.Show("Заполните данные.");
+                }
             }
             catch (Exception)
             {
-                MessageBox.Show($"Ошибка добавления строки.");
+                MessageBox.Show("Ошибка добавления строки.");
             }
         }
 

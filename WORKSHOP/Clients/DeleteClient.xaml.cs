@@ -34,10 +34,6 @@ namespace WORKSHOP
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Строка удалена успешно.");
-
-                ClientsList ClientsList = new();
-                ClientsList.Show();
-                Close();
             }
             catch (Exception)
             {

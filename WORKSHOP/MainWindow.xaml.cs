@@ -18,9 +18,7 @@ namespace WORKSHOP
 
         private void Button_Supply(object sender, RoutedEventArgs e)
         {
-            SupplierSupply SupplierSupply = new();
-            SupplierSupply.Show();
-            Close();
+
         }
 
         private void Button_Product(object sender, RoutedEventArgs e)
