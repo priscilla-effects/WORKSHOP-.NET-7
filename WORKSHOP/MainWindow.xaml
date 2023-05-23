@@ -119,7 +119,7 @@
                VerticalAlignment="Bottom"
                VerticalContentAlignment="Center" 
                HorizontalContentAlignment="Center"
-               Margin="0 0 0 20">
+               Margin="0 0 0 10">
             <Label.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="10" Opacity="1" Softness="9"/>
             </Label.BitmapEffect>

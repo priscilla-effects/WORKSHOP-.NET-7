@@ -35,6 +35,27 @@ namespace WORKSHOP
             con.Close();
         }
 
+        private void Button_Add(object sender, RoutedEventArgs e)
+        {
+            AddClient AddClient = new();
+            AddClient.Show();
+            Close();
+        }
+
+        private void Button_Delete(object sender, RoutedEventArgs e)
+        {
+            DeleteClient DeleteClient = new();
+            DeleteClient.Show();
+            Close();
+        }
+
+        private void Button_Edit(object sender, RoutedEventArgs e)
+        {
+            EditClient EditClient = new();
+            EditClient.Show();
+            Close();
+        }
+
         private void Button_Close(object sender, RoutedEventArgs e)
         {
             MainWindow MainWindow = new();

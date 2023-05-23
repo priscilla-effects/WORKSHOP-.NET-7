@@ -41,7 +41,7 @@
                 <DataGridTextColumn Header="Description" Binding="{Binding p_description}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Price" Binding="{Binding p_price}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding p_quantity}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Category" Binding="{Binding p_category}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Category" Binding="{Binding p_category}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
