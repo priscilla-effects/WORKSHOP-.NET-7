@@ -50,7 +50,7 @@ namespace WORKSHOP
             }
             catch (Exception)
             {
-                MessageBox.Show($"Ошибка удаления строки.");
+                MessageBox.Show("Ошибка удаления строки.");
             }
         }
 

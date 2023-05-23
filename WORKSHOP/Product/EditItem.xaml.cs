@@ -60,16 +60,15 @@ namespace WORKSHOP
                     cmd.Parameters.AddWithValue("value7", Int32.Parse(number.Text));
                     cmd.ExecuteNonQuery();
                 }
-                MessageBox.Show("Строка добавлена успешно.");
+                MessageBox.Show("Строка отредактирована успешно.");
 
                 ProductCategory ProductCategory = new();
                 ProductCategory.Show();
                 Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
-                MessageBox.Show($"Ошибка добавления строки.");
+                MessageBox.Show("Ошибка редактирования строки.");
             }
         }
 

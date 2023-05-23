@@ -98,7 +98,7 @@
                  HorizontalContentAlignment="Center"/>
 
         <TextBox x:Name="number"
-                 MaxLength="11"
+                 MaxLength="12"
                  Grid.Row="2"
                  Grid.ColumnSpan="3"
                  Height="40"

@@ -40,25 +40,25 @@ namespace WORKSHOP
                     con.Open();
                     using NpgsqlCommand cmd = new NpgsqlCommand();
                     cmd.Connection = con;
-                    cmd.CommandText = $"DELETE FROM public.\"Product\" WHERE p_id = {numberTextBox.Text};";
+                    cmd.CommandText = $"DELETE FROM public.\"Client\" WHERE c_id = {numberTextBox.Text};";
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Строка удалена успешно.");
 
-                ProductCategory ProductCategory = new();
-                ProductCategory.Show();
+                ClientsList ClientsList = new();
+                ClientsList.Show();
                 Close();
             }
             catch (Exception)
             {
-                MessageBox.Show($"Ошибка удаления строки.");
+                MessageBox.Show("Ошибка удаления строки.");
             }
         }
 
         private void Button_Close(object sender, RoutedEventArgs e)
         {
-            ProductCategory ProductCategory = new();
-            ProductCategory.Show();
+            ClientsList ClientsList = new();
+            ClientsList.Show();
             Close();
         }
     }

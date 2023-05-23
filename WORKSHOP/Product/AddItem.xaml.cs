@@ -61,7 +61,7 @@ namespace WORKSHOP
             }
             catch (Exception)
             {
-                MessageBox.Show($"Ошибка добавления строки.");
+                MessageBox.Show("Ошибка добавления строки.");
             }
         }
 
