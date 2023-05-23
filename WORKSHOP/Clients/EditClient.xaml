@@ -86,7 +86,7 @@
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center"/>
 
-        <TextBox x:Name="phone"
+        <TextBox x:Name="phone_number"
                  Grid.Row="2"
                  Grid.ColumnSpan="3"
                  Height="40"
@@ -98,7 +98,7 @@
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center"/>
 
-        <TextBox x:Name="ID_num"
+        <TextBox x:Name="id_number"
                  PreviewTextInput="Limit_id"
                  Grid.Row="6"
                  Grid.Column="0"
