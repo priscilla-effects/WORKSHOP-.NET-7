@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,30 +14,31 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WORKSHOP
 {
-    public partial class AddItem : Window
+    public partial class AddOrder : Window
     {
-        public AddItem()
+        public AddOrder()
         {
             InitializeComponent();
         }
 
-        private void Price(object sender, TextCompositionEventArgs e)
+        private void Product(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new Regex("[^1-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void Quantity(object sender, TextCompositionEventArgs e)
+        private void date_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            date.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
-        string sql_product = "INSERT INTO public.\"Product\" (p_brand, p_name, p_description, p_price, p_quantity, p_category) VALUES (@value1, @value2, @value3, @value4, @value5, @value6)";
+        string sql_order = "INSERT INTO public.\"Order\" (c_id, p_id, o_date) VALUES (@value1, @value2, @value3)";
         private void Button_Add(object sender, RoutedEventArgs e)
         {
             try
@@ -44,21 +46,18 @@ namespace WORKSHOP
                 using (NpgsqlConnection con = new NpgsqlConnection(conString))
                 {
                     con.Open();
-                    using (NpgsqlCommand cmd = new NpgsqlCommand(sql_product, con))
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(sql_order, con))
                     {
-                        cmd.Parameters.AddWithValue("value1", brand.Text);
-                        cmd.Parameters.AddWithValue("value2", name.Text);
-                        cmd.Parameters.AddWithValue("value3", description.Text);
-                        cmd.Parameters.AddWithValue("value4", Int32.Parse(price.Text));
-                        cmd.Parameters.AddWithValue("value5", Int32.Parse(quantity.Text));
-                        cmd.Parameters.AddWithValue("value6", (category.Text));
+                        cmd.Parameters.AddWithValue("value1", Int32.Parse(fio.Text));
+                        cmd.Parameters.AddWithValue("value2", Int32.Parse(product.Text));
+                        cmd.Parameters.AddWithValue("value3", date.Text);
                         cmd.ExecuteNonQuery();
                     }
                 }
                 MessageBox.Show("Строка добавлена успешно.");
 
-                ProductCategory ProductCategory = new();
-                ProductCategory.Show();
+                OrderClient OrderClient = new();
+                OrderClient.Show();
                 Close();
             }
             catch (Exception)
@@ -69,8 +68,8 @@ namespace WORKSHOP
 
         private void Button_Close(object sender, RoutedEventArgs e)
         {
-            ProductCategory ProductCategory = new();
-            ProductCategory.Show();
+            OrderClient OrderClient = new();
+            OrderClient.Show();
             Close();
         }
     }

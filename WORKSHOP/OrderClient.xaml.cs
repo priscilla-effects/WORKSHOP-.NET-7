@@ -21,13 +21,13 @@ namespace WORKSHOP
         private readonly DataSet ds = new();
         private readonly DataTable dt = new();
         string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
+        string sql_order = ("SELECT * FROM public.\"Order\"");
         public OrderClient()
         {
             InitializeComponent();
             var con = new NpgsqlConnection(conString);
             con.Open();
-            string sql = ("SELECT * FROM public.\"Order_Product\"");
-            NpgsqlDataAdapter adapter = new(sql, con);
+            NpgsqlDataAdapter adapter = new(sql_order, con);
             ds.Reset();
             adapter.Fill(ds);
             dt = ds.Tables[0];
@@ -37,12 +37,16 @@ namespace WORKSHOP
 
         private void Button_Add(object sender, RoutedEventArgs e)
         {
-
+            AddOrder AddOrder = new();
+            AddOrder.Show();
+            Close();
         }
 
         private void Button_Delete(object sender, RoutedEventArgs e)
         {
-
+            DeleteOrder DeleteOrder = new();
+            DeleteOrder.Show();
+            Close();
         }
 
         private void Button_Close(object sender, RoutedEventArgs e)

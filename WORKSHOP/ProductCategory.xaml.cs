@@ -53,6 +53,13 @@ namespace WORKSHOP
             Close();
         }
 
+        private void Button_Edit(object sender, RoutedEventArgs e)
+        {
+            EditItem EditItem = new EditItem();
+            EditItem.Show();
+            Close();
+        }
+
         private void Button_Close(object sender, RoutedEventArgs e)
         {
             MainWindow MainWindow = new();

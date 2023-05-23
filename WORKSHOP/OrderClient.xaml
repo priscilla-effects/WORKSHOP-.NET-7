@@ -34,9 +34,10 @@
                   CanUserReorderColumns="False">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Order ID" Binding="{Binding Order_o_id}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Product ID" Binding="{Binding Product_p_id}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Date" Binding="{Binding o_p_date}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Order ID" Binding="{Binding o_id}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Client ID" Binding="{Binding c_id}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Product ID" Binding="{Binding p_id}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding o_date}" Width="auto"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
