@@ -24,7 +24,7 @@ namespace WORKSHOP
             date.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
-        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
+        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;Include Error Detail=true;";
         readonly string sql_order = "INSERT INTO public.\"Order\" (c_id, p_id, o_date) VALUES (@value1, @value2, @value3)";
         private void Button_Add(object sender, RoutedEventArgs e)
         {

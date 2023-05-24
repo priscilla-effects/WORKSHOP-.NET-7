@@ -13,33 +13,16 @@ namespace WORKSHOP
             InitializeComponent();
         }
 
-        private void Price(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
-
-        private void Quantity(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
-
-        private void Limit_id(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
-
-        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
-        readonly string sql_product = "UPDATE public.\"Product\" SET p_brand = @value1, p_name = @value2, p_description = @value3, p_price = @value4, p_quantity = @value5, p_category = @value6 WHERE p_id = @value7";
+        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;Include Error Detail=true;";
+        readonly string sql_product = "UPDATE public.\"Product\" " +
+            "SET p_brand = @value1, p_name = @value2, p_description = @value3, p_price = @value4, p_quantity = @value5, p_category = @value6 " +
+            "WHERE p_id = @value7;";
         private void Button_Edit(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (!(string.IsNullOrEmpty(brand.Text)
                 || string.IsNullOrEmpty(name.Text)
-                || string.IsNullOrEmpty(description.Text)
                 || string.IsNullOrEmpty(description.Text)
                 || string.IsNullOrEmpty(price.Text)
                 || string.IsNullOrEmpty(quantity.Text)
@@ -74,6 +57,24 @@ namespace WORKSHOP
             {
                 MessageBox.Show("Ошибка редактирования строки.");
             }
+        }
+
+        private void Price(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Quantity(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Limits_id(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void Button_Close(object sender, RoutedEventArgs e)

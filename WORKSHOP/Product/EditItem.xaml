@@ -155,7 +155,7 @@
                  HorizontalContentAlignment="Center"/>
 
         <TextBox x:Name="number"
-                 PreviewTextInput="Limit_id"
+                 PreviewTextInput="Limits_id"
                  Grid.Row="6"
                  Grid.Column="0"
                  Height="40"
@@ -183,7 +183,7 @@
         <Button Grid.Row="8"
                 Grid.Column="1"
                 Content="OK"
-                Foreground="Black" 
+                Foreground="White" 
                 Background="#00adef"
                 FontFamily="EB Garamond" 
                 FontSize="20" 

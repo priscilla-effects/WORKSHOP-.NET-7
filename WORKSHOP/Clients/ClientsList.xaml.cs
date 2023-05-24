@@ -8,13 +8,13 @@ namespace WORKSHOP
     {
         private readonly DataSet ds = new();
         private readonly DataTable dt = new();
-        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
+        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;Include Error Detail=true;";
         public ClientsList()
         {
             InitializeComponent();
             var con = new NpgsqlConnection(conString);
             con.Open();
-            string sql = ("SELECT * FROM public.\"Client\"");
+            string sql = ("SELECT * FROM public.\"Client\";");
             NpgsqlDataAdapter adapter = new(sql, con);
             ds.Reset();
             adapter.Fill(ds);

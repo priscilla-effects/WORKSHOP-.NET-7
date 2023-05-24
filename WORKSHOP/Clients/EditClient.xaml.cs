@@ -13,38 +13,51 @@ namespace WORKSHOP
             InitializeComponent();
         }
 
-        private void Limit_id(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
-
         readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
-        readonly string sql_product = "UPDATE public.\"Client\" SET c_fio = @value1, c_address = @value2, c_number = @value3 WHERE c_id = @value4";
+        readonly string sql_client = "UPDATE public.\"Client\" " +
+            "SET c_fio = @value1, c_city = @value2, c_address = @value3, c_phone = @value4 " +
+            "WHERE c_id = @id;";
         private void Button_Edit(object sender, RoutedEventArgs e)
         {
             try
             {
-                using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                if (!(string.IsNullOrEmpty(fio.Text)
+                || string.IsNullOrEmpty(city.Text)
+                || string.IsNullOrEmpty(address.Text)
+                || string.IsNullOrEmpty(phone_number.Text)
+                || string.IsNullOrEmpty(number.Text)))
                 {
-                    con.Open();
-                    using NpgsqlCommand cmd = new NpgsqlCommand(sql_product, con);
-                    cmd.Parameters.AddWithValue("value1", fio.Text);
-                    cmd.Parameters.AddWithValue("value2", address.Text);
-                    cmd.Parameters.AddWithValue("value3", phone_number.Text);
-                    cmd.Parameters.AddWithValue("value4", id_number.Text);
-                    cmd.ExecuteNonQuery();
+                    using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                    {
+                        con.Open();
+                        using NpgsqlCommand cmd = new NpgsqlCommand(sql_client, con);
+                        cmd.Parameters.AddWithValue("value1", fio.Text);
+                        cmd.Parameters.AddWithValue("value2", city.Text);
+                        cmd.Parameters.AddWithValue("value3", address.Text);
+                        cmd.Parameters.AddWithValue("value4", phone_number.Text);
+                        cmd.Parameters.AddWithValue("id", Int32.Parse(number.Text));
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Строка отредактирована успешно.");
+                    ClientsList ClientsList = new();
+                    ClientsList.Show();
+                    Close();
                 }
-                MessageBox.Show("Строка отредактирована успешно.");
-
-                ProductCategory ProductCategory = new();
-                ProductCategory.Show();
-                Close();
+                else
+                {
+                    MessageBox.Show("Заполните данные.");
+                }
             }
             catch (Exception)
             {
                 MessageBox.Show("Ошибка редактирования.");
             }
+        }
+
+        private void Limits_id(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void Button_Close(object sender, RoutedEventArgs e)

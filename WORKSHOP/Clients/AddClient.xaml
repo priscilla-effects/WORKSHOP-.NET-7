@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WORKSHOP"
         mc:Ignorable="d"
         Title="Добавление клиента" 
-        Height="350" 
+        Height="450" 
         Width="400"
         Background="White"
         WindowStartupLocation="CenterScreen" 
@@ -15,6 +15,7 @@
 
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -32,7 +33,8 @@
                    FontFamily="EB Garamond" 
                    FontSize="25" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">ФИО</TextBlock>
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">ФИО</TextBlock>
 
         <TextBlock Grid.Row="1"
                    Grid.ColumnSpan="3"
@@ -40,7 +42,8 @@
                    FontFamily="EB Garamond" 
                    FontSize="25" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">Адрес</TextBlock>
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">Город</TextBlock>
 
         <TextBlock Grid.Row="2"
                    Grid.ColumnSpan="3"
@@ -48,7 +51,17 @@
                    FontFamily="EB Garamond" 
                    FontSize="25" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Top">Номер телефона</TextBlock>
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">Адрес</TextBlock>
+
+        <TextBlock Grid.Row="3"
+                   Grid.ColumnSpan="3"
+                   Foreground="Black" 
+                   FontFamily="EB Garamond" 
+                   FontSize="25" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top"
+                   Margin="0 10 0 0">Номер телефона</TextBlock>
 
         <TextBox x:Name="fio"
                  Grid.Row="0"
@@ -62,7 +75,7 @@
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center"/>
 
-        <TextBox x:Name="address"
+        <TextBox x:Name="city"
                  Grid.Row="1"
                  Grid.ColumnSpan="3"
                  Height="40"
@@ -74,10 +87,21 @@
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center"/>
 
-        <TextBox x:Name="phone_number"
+        <TextBox x:Name="address"
                  Grid.Row="2"
                  Grid.ColumnSpan="3"
-                 MaxLength="12"
+                 Height="40"
+                 Width="260"
+                 FontFamily="EB Garamond" 
+                 FontSize="30" 
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Bottom"
+                 VerticalContentAlignment="Center" 
+                 HorizontalContentAlignment="Center"/>
+
+        <TextBox x:Name="phone_number"
+                 Grid.Row="3"
+                 Grid.ColumnSpan="3"
                  Height="40"
                  Width="260"
                  FontFamily="EB Garamond" 

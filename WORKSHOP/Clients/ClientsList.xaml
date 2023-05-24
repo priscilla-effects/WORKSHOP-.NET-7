@@ -37,8 +37,9 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding c_id}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Full name" Binding="{Binding c_fio}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="City" Binding="{Binding c_city}" Width="1*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Address" Binding="{Binding c_address}" Width="1*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Phone number" Binding="{Binding c_number}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Phone number" Binding="{Binding c_phone}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

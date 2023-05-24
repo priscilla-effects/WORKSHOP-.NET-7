@@ -20,7 +20,7 @@ namespace WORKSHOP
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
+        readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;Include Error Detail=true;";
         private void Button_Delete(object sender, RoutedEventArgs e)
         {
             try
