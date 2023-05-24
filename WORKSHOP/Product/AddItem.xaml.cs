@@ -39,7 +39,7 @@ namespace WORKSHOP
                         cmd.Parameters.AddWithValue("value3", description.Text);
                         cmd.Parameters.AddWithValue("value4", Int32.Parse(price.Text));
                         cmd.Parameters.AddWithValue("value5", Int32.Parse(quantity.Text));
-                        cmd.Parameters.AddWithValue("value6", (category.Text));
+                        cmd.Parameters.AddWithValue("value6", category.Text);
                         cmd.ExecuteNonQuery();
                     }
                     MessageBox.Show("Строка добавлена успешно.");
