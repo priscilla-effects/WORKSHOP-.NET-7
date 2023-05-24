@@ -35,15 +35,16 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Number" Binding="{Binding o_id}" Width="auto"></DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Full name" Binding="{Binding c_fio}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="City" Binding="{Binding c_city}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Address" Binding="{Binding c_address}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Phone number" Binding="{Binding c_phone}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="сID" Binding="{Binding c_id}" Width="auto"></DataGridTextColumn>
                 
                 <DataGridTextColumn Header="Product name" Binding="{Binding p_name}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Price" Binding="{Binding p_price}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Product ID" Binding="{Binding p_id}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="pID" Binding="{Binding p_id}" Width="auto"></DataGridTextColumn>
                 
                 <DataGridTextColumn Header="Date" Binding="{Binding o_date}" Width="auto"></DataGridTextColumn>
 

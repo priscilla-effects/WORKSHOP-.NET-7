@@ -16,7 +16,7 @@ namespace WORKSHOP
             Close();
         }
 
-        private void Button_Supply(object sender, RoutedEventArgs e)
+        private void Button_Warehouse(object sender, RoutedEventArgs e)
         {
 
         }

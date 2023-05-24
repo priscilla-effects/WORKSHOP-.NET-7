@@ -29,10 +29,10 @@ namespace WORKSHOP
                 || string.IsNullOrEmpty(category.Text)
                 || string.IsNullOrEmpty(number.Text)))
                 {
-                    using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                    using (NpgsqlConnection con = new(conString))
                     {
                         con.Open();
-                        using NpgsqlCommand cmd = new NpgsqlCommand(sql_product, con);
+                        using NpgsqlCommand cmd = new(sql_product, con);
                         cmd.Parameters.AddWithValue("value1", brand.Text);
                         cmd.Parameters.AddWithValue("value2", name.Text);
                         cmd.Parameters.AddWithValue("value3", description.Text);

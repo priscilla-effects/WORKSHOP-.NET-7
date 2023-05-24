@@ -60,7 +60,7 @@
 
         <Button Grid.Row="1"
                 Grid.Column="0"
-                Content="ЗАКУПКА"
+                Content="СКЛАД"
                 Foreground="black" 
                 Background="white"
                 FontFamily="EB Garamond" 
@@ -73,7 +73,7 @@
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center" 
                 HorizontalContentAlignment="Center"
-                Click="Button_Supply"/>
+                Click="Button_Warehouse"/>
 
         <Button Grid.Row="1"
                 Grid.Column="2"

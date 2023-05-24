@@ -34,22 +34,20 @@ namespace WORKSHOP
                     || string.IsNullOrEmpty(product.Text)
                     || string.IsNullOrEmpty(date.Text)))
                 {
-                    using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                    using (NpgsqlConnection con = new(conString))
                     {
                         con.Open();
-                        using NpgsqlCommand cmd1 = new NpgsqlCommand(sql_client, con);
+                        using NpgsqlCommand cmd1 = new(sql_client, con);
                         cmd1.Parameters.AddWithValue("value1", fio.Text);
                         cmd1.Parameters.AddWithValue("value2", city.Text);
                         cmd1.Parameters.AddWithValue("value3", address.Text);
                         cmd1.Parameters.AddWithValue("value4", phone_number.Text);
                         int id = Convert.ToInt32(cmd1.ExecuteScalar());
 
-                        using NpgsqlCommand cmd2 = new NpgsqlCommand(sql_order, con);
+                        using NpgsqlCommand cmd2 = new(sql_order, con);
                         cmd2.Parameters.AddWithValue("value5", id);
                         cmd2.Parameters.AddWithValue("value6", Int32.Parse(product.Text));
                         cmd2.Parameters.AddWithValue("value7", date.Text);
-
-                        cmd1.ExecuteNonQuery();
                         cmd2.ExecuteNonQuery();
                     }
                     MessageBox.Show("Строка добавлена успешно.");

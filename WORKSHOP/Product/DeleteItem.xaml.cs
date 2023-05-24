@@ -18,10 +18,10 @@ namespace WORKSHOP
         {
             try
             {
-                using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                using (NpgsqlConnection con = new(conString))
                 {
                     con.Open();
-                    using NpgsqlCommand cmd = new NpgsqlCommand();
+                    using NpgsqlCommand cmd = new();
                     cmd.Connection = con;
                     cmd.CommandText = "DELETE FROM public.\"Product\" WHERE p_id = @id;";
                     cmd.Parameters.AddWithValue("id", Int32.Parse(number.Text));
