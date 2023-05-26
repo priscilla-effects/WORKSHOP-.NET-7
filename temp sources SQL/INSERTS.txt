@@ -1,0 +1,84 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
+INSERT INTO public."Product" (p_brand, p_name, p_description, p_price, p_quantity, p_category) 
+VALUES 
+('Priscilla Custom Effects', 'TS-S', 'Overdrive', 11800, 1, 'Custom Effects'),
+('Priscilla Custom Effects', 'PRISCILLA', 'Overdrive-Distortion', 15200, 1, 'Custom Effects'),
+('Priscilla Custom Effects', 'M', 'Modern Overdrive', 14200, 1, 'Custom Effects'),
+('Priscilla Custom Effects', 'H&B', 'Booster', 3800, 1, 'Custom Effects'),
+('Priscilla Custom Effects', 'OD-3 TK mod', 'Именная модель Toru Kitajima', 4800, 1, 'Mods'),
+('Priscilla Custom Effects', 'BD-2 TK mod', 'Именная модель Toru Kitajima', 3800, 1, 'Mods'),
+('Priscilla Custom Effects', 'SPH-1 SPI mod', 'Именная модель Toru Kitajima', 4800, 1, 'Mods'),
+('Priscilla Custom Effects', 'SPH-1 WAXX mod', 'Именная модель Toru Kitajima', 4800, 1, 'Mods'),
+('Priscilla Custom Effects', 'LS-2 TK mod', 'Именная модель Toru Kitajima', 2800, 1, 'Mods');
+
+INSERT INTO public."Client" (c_fio, c_city, c_address, c_phone) 
+VALUES 
+('Akira', 'Tokyo', 'far away', '+79876543210'), 
+('couscousdude', 'Tokyo', 'far away', '+79876543210'),
+('Fu re te fu re ru', 'Tokyo', 'far away', '+79876543210'),
+('roshiajinn', 'Tokyo', 'far away', '+79876543210'),
+('aF', 'Tokyo', 'far away', '+79876543210'),
+('mc', 'Tokyo', 'far away', '+79876543210'),
+('fussedsyko', 'Tokyo', 'far away', '+79876543210'),
+('nsn', 'Tokyo', 'far away', '+79876543210'),
+('Futti Peace', 'Tokyo', 'far away', '+79876543210'),
+('霪島時雨', 'Tokyo', 'far away', '+79876543210'),
+('abnormaltrick', 'Tokyo', 'far away', '+79876543210'),
+('技craft enjoyer', 'Tokyo', 'far away', '+79876543210'),
+('TYの時雨', 'Tokyo', 'far away', '+79876543210'),
+('Toru Kitajima', 'Tokyo', 'far away', '+79876543210'),
+('345', 'Tokyo', 'far away', '+79876543210'),
+('Pierre Nakano', 'Tokyo', 'far away', '+79876543210'), 
+('Shutoku Mukai', 'Tokyo', 'far away', '+79876543210');
+
+INSERT INTO public."Order" (c_id, p_id, o_date) 
+VALUES 
+(1, 1, '2023-05-24'),
+(2, 2, '2023-05-24'),
+(3, 3, '2023-05-24'),
+(4, 4, '2023-05-24'),
+(5, 5, '2023-05-24'),
+(6, 6, '2023-05-24'),
+(7, 7, '2023-05-24'),
+(8, 8, '2023-05-24'),
+(9, 9, '2023-05-24');
+
+INSERT INTO public."Supplier" (s_name, s_site, s_description) 
+VALUES 
+('Автограф', 'https://avtograf72.ru', 'Типография'),
+('chipdip.', 'https://www.chipdip.ru', 'Электрокомплектующие'),
+('DIY-TUBES', 'http://diy-tubes.ru', 'Электрокомплектующие'),
+('Mouser', 'https://ru.mouser.com', 'Электрокомплектующие'),
+('Унисервис', 'https://uniservice.msk.ru', 'Электрокомплектующие');
+
+INSERT INTO public."Supply" (sp_item, sp_date, sp_total, s_id) 
+VALUES 
+('Наклейка', '2023-05-24', 1400, 1),
+('Резистор', '2023-05-24', 1500, 2),
+('Кондесатор', '2023-05-24', 3600, 3),
+('Потенциометр', '2023-05-24', 1200, 4),
+('Макетная плата', '2023-05-24', 800, 5);
+
+
+CREATE FUNCTION warehouse_sync_product() RETURNS TRIGGER AS $$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        INSERT INTO public."Warehouse" (w_id) VALUES (NEW.p_id);
+    ELSIF TG_OP = 'UPDATE' THEN
+        UPDATE public."Warehouse" SET w_id = NEW.p_id WHERE w_id = OLD.p_id;
+    ELSIF TG_OP = 'DELETE' THEN
+        DELETE FROM public."Warehouse" WHERE w_id = OLD.w_id;
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER warehouse_trigger_product
+AFTER INSERT OR UPDATE OR DELETE ON public."Product"
+FOR EACH ROW
+EXECUTE PROCEDURE warehouse_sync_product();
+
+
+
