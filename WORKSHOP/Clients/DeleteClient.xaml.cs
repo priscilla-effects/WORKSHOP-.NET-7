@@ -19,14 +19,17 @@ namespace WORKSHOP
         {
             try
             {
-                using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                using (NpgsqlConnection con = new(conString))
                 {
                     con.Open();
-                    using NpgsqlCommand cmd = new NpgsqlCommand();
+
+                    using NpgsqlCommand cmd = new();
                     cmd.Connection = con;
                     cmd.CommandText = "DELETE FROM public.\"Client\" WHERE c_id = @id;";
                     cmd.Parameters.AddWithValue("id", Int32.Parse(number.Text));
                     cmd.ExecuteNonQuery();
+
+                    con.Close();
                 }
                 MessageBox.Show("Строка удалена успешно.");
             }
@@ -38,7 +41,7 @@ namespace WORKSHOP
 
         private void Limits_id(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 

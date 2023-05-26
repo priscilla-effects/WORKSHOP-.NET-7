@@ -1,10 +1,8 @@
 ﻿using Npgsql;
 using System;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace WORKSHOP
 {
@@ -30,13 +28,13 @@ namespace WORKSHOP
                     || string.IsNullOrEmpty(city.Text)
                     || string.IsNullOrEmpty(address.Text)
                     || string.IsNullOrEmpty(phone_number.Text)
-                    || string.IsNullOrEmpty(fio.Text)
                     || string.IsNullOrEmpty(product.Text)
                     || string.IsNullOrEmpty(date.Text)))
                 {
                     using (NpgsqlConnection con = new(conString))
                     {
                         con.Open();
+
                         using NpgsqlCommand cmd1 = new(sql_client, con);
                         cmd1.Parameters.AddWithValue("value1", fio.Text);
                         cmd1.Parameters.AddWithValue("value2", city.Text);
@@ -49,8 +47,11 @@ namespace WORKSHOP
                         cmd2.Parameters.AddWithValue("value6", Int32.Parse(product.Text));
                         cmd2.Parameters.AddWithValue("value7", date.Text);
                         cmd2.ExecuteNonQuery();
+
+                        con.Close();
                     }
                     MessageBox.Show("Строка добавлена успешно.");
+
                     OrderClient OrderClient = new();
                     OrderClient.Show();
                     Close();
@@ -60,16 +61,15 @@ namespace WORKSHOP
                     MessageBox.Show("Заполните данные.");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
                 MessageBox.Show("Ошибка добавления строки.");
             }
         }
 
         private void Product(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 

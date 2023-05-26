@@ -1,7 +1,6 @@
 ﻿using Npgsql;
 using System;
 using System.Windows;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WORKSHOP
 {
@@ -25,17 +24,21 @@ namespace WORKSHOP
                     || string.IsNullOrEmpty(address.Text) 
                     || string.IsNullOrEmpty(phone_number.Text)))
                 {
-                    using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                    using (NpgsqlConnection con = new(conString))
                     {
                         con.Open();
-                        using NpgsqlCommand cmd = new NpgsqlCommand(sql_client, con);
+
+                        using NpgsqlCommand cmd = new(sql_client, con);
                         cmd.Parameters.AddWithValue("value1", fio.Text);
                         cmd.Parameters.AddWithValue("value2", city.Text);
                         cmd.Parameters.AddWithValue("value3", address.Text);
                         cmd.Parameters.AddWithValue("value4", phone_number.Text);
                         cmd.ExecuteNonQuery();
+
+                        con.Close();
                     }
                     MessageBox.Show("Строка добавлена успешно.");
+
                     ClientsList ClientsList = new();
                     ClientsList.Show();
                     Close();

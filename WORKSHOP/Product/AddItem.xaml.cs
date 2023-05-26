@@ -33,6 +33,7 @@ namespace WORKSHOP
                     using (NpgsqlConnection con = new(conString))
                     {
                         con.Open();
+
                         using NpgsqlCommand cmd = new(sql_product, con);
                         cmd.Parameters.AddWithValue("value1", brand.Text);
                         cmd.Parameters.AddWithValue("value2", name.Text);
@@ -41,8 +42,11 @@ namespace WORKSHOP
                         cmd.Parameters.AddWithValue("value5", Int32.Parse(quantity.Text));
                         cmd.Parameters.AddWithValue("value6", category.Text);
                         cmd.ExecuteNonQuery();
+
+                        con.Close();
                     }
                     MessageBox.Show("Строка добавлена успешно.");
+
                     ProductCategory ProductCategory = new();
                     ProductCategory.Show();
                     Close();
@@ -60,13 +64,13 @@ namespace WORKSHOP
 
         private void Price(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
         private void Quantity(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 

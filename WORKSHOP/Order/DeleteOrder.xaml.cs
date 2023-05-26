@@ -3,6 +3,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace WORKSHOP
@@ -22,10 +23,14 @@ namespace WORKSHOP
                 using (NpgsqlConnection con = new(conString))
                 {
                     con.Open();
+
                     using NpgsqlCommand cmd = new();
                     cmd.Connection = con;
-                    cmd.CommandText = $"DELETE FROM public.\"Order\" WHERE o_id = {numberTextBox.Text};";
+                    cmd.CommandText = "DELETE FROM public.\"Order\" WHERE o_id = id;";
+                    cmd.Parameters.AddWithValue("id", Int32.Parse(number.Text));
                     cmd.ExecuteNonQuery();
+
+                    con.Close();
                 }
                 MessageBox.Show("Строка удалена успешно.");
             }
@@ -37,7 +42,7 @@ namespace WORKSHOP
 
         private void PreviewTextInputHandler(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^1-9]+");
+            Regex regex = new("[^1-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 

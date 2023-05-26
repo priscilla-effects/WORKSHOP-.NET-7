@@ -8,6 +8,7 @@ namespace WORKSHOP
     {
         private readonly DataSet ds = new();
         private readonly DataTable dt = new();
+
         readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;Include Error Detail=true;";
         readonly string sql_order = ("SELECT * FROM public.\"Order\" " +
             "LEFT JOIN public.\"Client\" ON public.\"Order\".c_id = public.\"Client\".c_id " +
@@ -17,11 +18,13 @@ namespace WORKSHOP
             InitializeComponent();
             var con = new NpgsqlConnection(conString);
             con.Open();
+
             NpgsqlDataAdapter adapter = new(sql_order, con);
             ds.Reset();
             adapter.Fill(ds);
             dt = ds.Tables[0];
             Order_DG.ItemsSource = dt.DefaultView;
+
             con.Close();
         }
 

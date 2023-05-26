@@ -27,18 +27,22 @@ namespace WORKSHOP
                 || string.IsNullOrEmpty(phone_number.Text)
                 || string.IsNullOrEmpty(number.Text)))
                 {
-                    using (NpgsqlConnection con = new NpgsqlConnection(conString))
+                    using (NpgsqlConnection con = new(conString))
                     {
                         con.Open();
-                        using NpgsqlCommand cmd = new NpgsqlCommand(sql_client, con);
+
+                        using NpgsqlCommand cmd = new(sql_client, con);
                         cmd.Parameters.AddWithValue("value1", fio.Text);
                         cmd.Parameters.AddWithValue("value2", city.Text);
                         cmd.Parameters.AddWithValue("value3", address.Text);
                         cmd.Parameters.AddWithValue("value4", phone_number.Text);
                         cmd.Parameters.AddWithValue("id", Int32.Parse(number.Text));
                         cmd.ExecuteNonQuery();
+
+                        con.Close();
                     }
                     MessageBox.Show("Строка отредактирована успешно.");
+
                     ClientsList ClientsList = new();
                     ClientsList.Show();
                     Close();
@@ -56,7 +60,7 @@ namespace WORKSHOP
 
         private void Limits_id(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
