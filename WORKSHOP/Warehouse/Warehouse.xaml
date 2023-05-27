@@ -26,7 +26,7 @@
         </Grid.ColumnDefinitions>
 
         <DataGrid Grid.Row="0"
-                  Grid.ColumnSpan="2"
+                  Grid.ColumnSpan="4"
                   Width="340"
                   x:Name="Supply_DG" 
                   IsReadOnly="True"
@@ -38,10 +38,7 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding sp_id}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Item" Binding="{Binding sp_item}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Date" Binding="{Binding sp_date}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Total" Binding="{Binding sp_total}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Supplier" Binding="{Binding s_id}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding sp_item}" Width="auto"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -58,10 +55,7 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding p_id}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Name" Binding="{Binding p_name}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Binding="{Binding p_description}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Price" Binding="{Binding p_price}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="Category" Binding="{Binding p_category}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding p_name}" Width="auto"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

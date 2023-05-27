@@ -26,7 +26,7 @@ namespace WORKSHOP
 
                     using NpgsqlCommand cmd = new();
                     cmd.Connection = con;
-                    cmd.CommandText = "DELETE FROM public.\"Order\" WHERE o_id = id;";
+                    cmd.CommandText = "DELETE FROM public.\"Order\" WHERE o_id = @id;";
                     cmd.Parameters.AddWithValue("id", Int32.Parse(number.Text));
                     cmd.ExecuteNonQuery();
 

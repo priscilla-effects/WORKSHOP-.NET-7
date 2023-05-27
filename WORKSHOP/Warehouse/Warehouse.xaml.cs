@@ -11,26 +11,28 @@ namespace WORKSHOP
         private readonly DataSet ds2 = new();
         private readonly DataTable dt2 = new();
         readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;Include Error Detail=true;";
-        readonly string sql_supply = ("SELECT * FROM public.\"Warehouse\" " +
-                "LEFT JOIN public.\"Supply\" ON public.\"Warehouse\".sp_id = public.\"Supply\".sp_id;");
-        readonly string sql_product = ("SELECT * FROM public.\"Warehouse\" " +
-                "LEFT JOIN public.\"Product\" ON public.\"Warehouse\".p_id = public.\"Product\".p_id;");
+        readonly string sql1 = ("SELECT * FROM public.\"Warehouse\" " +
+            "LEFT JOIN public.\"Supply\" ON public.\"Warehouse\".ws_id = public.\"Supply\".s_id");
+        readonly string sql2 = ("SELECT * FROM public.\"Warehouse\" " +
+            "LEFT JOIN public.\"Product\" ON public.\"Warehouse\".wp_id = public.\"Product\".p_id");
         public Warehouse()
         {
             InitializeComponent();
             var con = new NpgsqlConnection(conString);
             con.Open();
-            NpgsqlDataAdapter adapter1 = new(sql_supply, con);
+
+            NpgsqlDataAdapter adapter1 = new(sql1, con);
             ds1.Reset();
             adapter1.Fill(ds1);
             dt1 = ds1.Tables[0];
             Supply_DG.ItemsSource = dt1.DefaultView;
 
-            NpgsqlDataAdapter adapter2 = new(sql_product, con);
+            NpgsqlDataAdapter adapter2 = new(sql2, con);
             ds2.Reset();
             adapter2.Fill(ds2);
             dt2 = ds2.Tables[0];
             Product_DG.ItemsSource = dt2.DefaultView;
+
             con.Close();
         }
 

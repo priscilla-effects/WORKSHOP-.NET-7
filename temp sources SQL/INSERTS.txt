@@ -62,23 +62,48 @@ VALUES
 ('Макетная плата', '2023-05-24', 800, 5);
 
 
-CREATE FUNCTION warehouse_sync_product() RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION supply_trigger() RETURNS TRIGGER AS $$
 BEGIN
-    IF TG_OP = 'INSERT' THEN
-        INSERT INTO public."Warehouse" (w_id) VALUES (NEW.p_id);
-    ELSIF TG_OP = 'UPDATE' THEN
-        UPDATE public."Warehouse" SET w_id = NEW.p_id WHERE w_id = OLD.p_id;
-    ELSIF TG_OP = 'DELETE' THEN
-        DELETE FROM public."Warehouse" WHERE w_id = OLD.w_id;
-    END IF;
-    RETURN NULL;
+IF TG_OP = 'INSERT' THEN
+INSERT INTO public."Warehouse" (sp_id, w_action)
+VALUES (NEW.sp_id, 'INSERT');
+RETURN NEW;
+ELSIF TG_OP = 'UPDATE' THEN
+INSERT INTO public."Warehouse" (sp_id, w_action)
+VALUES (NEW.sp_id, 'UPDATE');
+RETURN NEW;
+ELSIF TG_OP = 'DELETE' THEN
+INSERT INTO public."Warehouse" (sp_id, w_action)
+VALUES (OLD.sp_id, 'DELETE');
+RETURN OLD;
+END IF;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER warehouse_trigger_product
+CREATE OR REPLACE FUNCTION product_trigger() RETURNS TRIGGER AS $$
+BEGIN
+IF TG_OP = 'INSERT' THEN
+INSERT INTO public."Warehouse" (p_id, w_action)
+VALUES (NEW.p_id, 'INSERT');
+RETURN NEW;
+ELSIF TG_OP = 'UPDATE' THEN
+INSERT INTO Warehouse (p_id, w_action)
+VALUES (NEW.p_id, 'UPDATE');
+RETURN NEW;
+ELSIF TG_OP = 'DELETE' THEN
+INSERT INTO Warehouse (p_id, w_action)
+VALUES (OLD.p_id, 'DELETE');
+RETURN OLD;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER supply_trigger
+AFTER INSERT OR UPDATE OR DELETE ON public."Supply"
+FOR EACH ROW
+EXECUTE FUNCTION supply_trigger();
+
+CREATE TRIGGER product_trigger
 AFTER INSERT OR UPDATE OR DELETE ON public."Product"
 FOR EACH ROW
-EXECUTE PROCEDURE warehouse_sync_product();
-
-
-
+EXECUTE FUNCTION product_trigger();

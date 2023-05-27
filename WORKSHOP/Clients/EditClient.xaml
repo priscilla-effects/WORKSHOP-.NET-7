@@ -121,6 +121,7 @@
                  HorizontalContentAlignment="Center"/>
 
         <TextBox x:Name="number"
+                 PreviewTextInput="Limits_id"
                  Grid.Row="6"
                  Grid.Column="0"
                  Height="40"

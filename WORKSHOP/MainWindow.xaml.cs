@@ -18,9 +18,9 @@ namespace WORKSHOP
 
         private void Button_Warehouse(object sender, RoutedEventArgs e)
         {
-            Warehouse Warehouse = new();
-            Warehouse.Show();
-            Close();
+            //Warehouse Warehouse = new();
+            //Warehouse.Show();
+            //Close();
         }
 
         private void Button_Product(object sender, RoutedEventArgs e)

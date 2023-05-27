@@ -1,43 +1,41 @@
-CREATE OR REPLACE FUNCTION update_warehouse() RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION transfer_supply() RETURNS TRIGGER AS $$
 BEGIN
-IF (TG_OP = 'INSERT' AND TG_TABLE_NAME = 'Product') THEN
-INSERT INTO public."Warehouse" (w_id, p_id)
-VALUES (NEW.w_id, 1);
+IF TG_OP = 'INSERT' THEN
+INSERT INTO public."Warehouse" (ws_id)
+VALUES (NEW.sp_id);
 
-ELSIF (TG_OP = 'UPDATE' AND TG_TABLE_NAME = 'Product') THEN
-UPDATE public."Warehouse"
-SET p_id = 1
-WHERE w_id = NEW.w_id;
-
-ELSIF (TG_OP = 'DELETE' AND TG_TABLE_NAME = 'Product') THEN
+ELSIF TG_OP = 'DELETE' THEN
 DELETE FROM public."Warehouse"
-WHERE w_id = OLD.w_id;
-
-ELSIF (TG_OP = 'INSERT' AND TG_TABLE_NAME = 'Supply') THEN
-INSERT INTO public."Warehouse" (w_id, sp_id)
-VALUES (NEW.w_id, 1);
-
-ELSIF (TG_OP = 'UPDATE' AND TG_TABLE_NAME = 'Supply') THEN
-UPDATE public."Warehouse"
-SET sp_id = 1
-WHERE w_id = NEW.w_id;
-
-ELSIF (TG_OP = 'DELETE' AND TG_TABLE_NAME = 'Supply') THEN
-DELETE FROM public."Warehouse"
-WHERE w_id = OLD.w_id;
+WHERE ws_id = OLD.sp_id;
 
 END IF;
-RETURN NULL;
+RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-
-CREATE TRIGGER product_trigger
-AFTER INSERT OR UPDATE OR DELETE ON public."Product"
+CREATE TRIGGER supply_trigger
+AFTER INSERT OR DELETE ON public."Supply"
 FOR EACH ROW
-EXECUTE PROCEDURE update_warehouse();
+EXECUTE FUNCTION transfer_supply();
+
+
+
+CREATE OR REPLACE FUNCTION transfer_product() RETURNS TRIGGER AS $$
+BEGIN
+IF TG_OP = 'INSERT' THEN
+INSERT INTO public."Warehouse" (wp_id)
+VALUES (NEW.p_id);
+
+ELSIF TG_OP = 'DELETE' THEN
+DELETE FROM public."Warehouse"
+WHERE wp_id = OLD.p_id;
+
+END IF;
+RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
 CREATE TRIGGER supply_trigger
-AFTER INSERT OR UPDATE OR DELETE ON public."Supply"
+AFTER INSERT OR DELETE ON public."Product"
 FOR EACH ROW
-EXECUTE PROCEDURE update_warehouse();
+EXECUTE FUNCTION transfer_supply();
