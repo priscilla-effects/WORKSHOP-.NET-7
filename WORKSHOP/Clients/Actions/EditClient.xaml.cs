@@ -15,7 +15,10 @@ namespace WORKSHOP
 
         readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;";
         readonly string sql_client = "UPDATE public.\"Client\" " +
-            "SET c_fio = @value1, c_city = @value2, c_address = @value3, c_phone = @value4 " +
+            "SET c_fio = @value1, " +
+            "c_city = @value2, " +
+            "c_address = @value3, " +
+            "c_phone = @value4 " +
             "WHERE c_id = @id;";
         private void Button_Edit(object sender, RoutedEventArgs e)
         {
@@ -41,20 +44,18 @@ namespace WORKSHOP
 
                         con.Close();
                     }
-                    MessageBox.Show("Строка отредактирована успешно.");
-
                     ClientsList ClientsList = new();
                     ClientsList.Show();
                     Close();
                 }
                 else
                 {
-                    MessageBox.Show("Заполните данные.");
+                    MessageBox.Show("Заполните данные.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка редактирования.");
+                MessageBox.Show("Ошибка редактирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

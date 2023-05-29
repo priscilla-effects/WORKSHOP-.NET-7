@@ -4,11 +4,11 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
-namespace WORKSHOP
+namespace WORKSHOP.Clients.Actions
 {
-    public partial class DeleteItem : Window
+    public partial class DeleteClient : Window
     {
-        public DeleteItem()
+        public DeleteClient()
         {
             InitializeComponent();
         }
@@ -24,17 +24,17 @@ namespace WORKSHOP
 
                     using NpgsqlCommand cmd = new();
                     cmd.Connection = con;
-                    cmd.CommandText = "DELETE FROM public.\"Product\" WHERE p_id = @id;";
+                    cmd.CommandText = "DELETE FROM public.\"Client\" WHERE c_id = @id;";
                     cmd.Parameters.AddWithValue("id", Int32.Parse(number.Text));
                     cmd.ExecuteNonQuery();
 
                     con.Close();
                 }
-                MessageBox.Show("Строка удалена успешно.");
+                MessageBox.Show("Строка удалена успешно.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка удаления строки.");
+                MessageBox.Show("Ошибка удаления строки.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -46,8 +46,8 @@ namespace WORKSHOP
 
         private void Button_Close(object sender, RoutedEventArgs e)
         {
-            ProductCategory ProductCategory = new();
-            ProductCategory.Show();
+            ClientsList ClientsList = new();
+            ClientsList.Show();
             Close();
         }
     }

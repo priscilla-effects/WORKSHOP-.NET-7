@@ -1,16 +1,16 @@
-﻿<Window x:Class="WORKSHOP.DeleteClient"
+﻿<Window x:Class="WORKSHOP.Warehouse.Actions.DeleteSupplier"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WORKSHOP"
+        xmlns:local="clr-namespace:WORKSHOP.Warehouse.Actions"
         mc:Ignorable="d"
-        Title="Удаление клиента" 
+        Title="Удаление поставщика" 
         Height="250" 
         Width="300"
         Background="White"
         WindowStartupLocation="CenterScreen" 
-        WindowState="Normal" 
+        WindowState="Normal"
         ResizeMode="NoResize">
 
     <Grid ShowGridLines="False">

@@ -3,8 +3,6 @@ using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 
 namespace WORKSHOP
 {
@@ -32,11 +30,11 @@ namespace WORKSHOP
 
                     con.Close();
                 }
-                MessageBox.Show("Строка удалена успешно.");
+                MessageBox.Show("Строка удалена успешно.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка удаления строки.");
+                MessageBox.Show("Ошибка удаления строки.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

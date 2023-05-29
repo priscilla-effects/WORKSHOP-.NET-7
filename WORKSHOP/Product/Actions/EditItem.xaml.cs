@@ -1,34 +1,36 @@
 ﻿using Npgsql;
 using System;
-using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
-
 namespace WORKSHOP
 {
-    public partial class AddItem : Window
+    public partial class EditItem : Window
     {
-        public AddItem()
+        public EditItem()
         {
             InitializeComponent();
         }
 
         readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;Include Error Detail=true;";
-        readonly string sql_product = "INSERT INTO public.\"Product\" " +
-            "(p_brand, p_name, p_description, p_price, p_quantity, p_category) " +
-            "VALUES (@value1, @value2, @value3, @value4, @value5, @value6);";
-        private void Button_Add(object sender, RoutedEventArgs e)
+        readonly string sql_product = "UPDATE public.\"Product\" " +
+            "SET p_brand = @value1, " +
+            "p_name = @value2, " +
+            "p_description = @value3, " +
+            "p_price = @value4, " +
+            "p_category = @value5 " +
+            "WHERE p_id = @value6;";
+        private void Button_Edit(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (!(string.IsNullOrEmpty(brand.Text) 
-                    || string.IsNullOrEmpty(name.Text) 
-                    || string.IsNullOrEmpty(description.Text) 
-                    || string.IsNullOrEmpty(price.Text)
-                    || string.IsNullOrEmpty(quantity.Text)
-                    || string.IsNullOrEmpty(category.Text)))
+                if (!(string.IsNullOrEmpty(brand.Text)
+                || string.IsNullOrEmpty(name.Text)
+                || string.IsNullOrEmpty(description.Text)
+                || string.IsNullOrEmpty(price.Text)
+                || string.IsNullOrEmpty(category.Text)
+                || string.IsNullOrEmpty(number.Text)))
                 {
                     using (NpgsqlConnection con = new(conString))
                     {
@@ -39,26 +41,26 @@ namespace WORKSHOP
                         cmd.Parameters.AddWithValue("value2", name.Text);
                         cmd.Parameters.AddWithValue("value3", description.Text);
                         cmd.Parameters.AddWithValue("value4", Int32.Parse(price.Text));
-                        cmd.Parameters.AddWithValue("value5", Int32.Parse(quantity.Text));
-                        cmd.Parameters.AddWithValue("value6", category.Text);
+                        cmd.Parameters.AddWithValue("value5", category.Text);
+                        cmd.Parameters.AddWithValue("value6", Int32.Parse(number.Text));
                         cmd.ExecuteNonQuery();
 
                         con.Close();
                     }
-                    MessageBox.Show("Строка добавлена успешно.");
-
                     ProductCategory ProductCategory = new();
                     ProductCategory.Show();
                     Close();
                 }
                 else
                 {
-                    MessageBox.Show("Заполните данные.");
+                    MessageBox.Show("Заполните данные.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ошибка добавления строки.");
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ошибка редактирования строки.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -69,6 +71,12 @@ namespace WORKSHOP
         }
 
         private void Quantity(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Limits_id(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);

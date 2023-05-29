@@ -1,11 +1,11 @@
-﻿<Window x:Class="WORKSHOP.Warehouse"
+﻿<Window x:Class="WORKSHOP.Warehouse.SupplierList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WORKSHOP"
+        xmlns:local="clr-namespace:WORKSHOP.Warehouse"
         mc:Ignorable="d"
-        Title="Склад"
+        Title="Список поставщиков"
         Height="450" 
         Width="700"
         Background="#00adef"
@@ -27,41 +27,24 @@
 
         <DataGrid Grid.Row="0"
                   Grid.ColumnSpan="4"
-                  Width="340"
-                  x:Name="Supply_DG" 
-                  IsReadOnly="True"
-                  HorizontalAlignment="Left"
+                  x:Name="Supplier_DG" 
+                  IsReadOnly="True" 
                   AutoGenerateColumns="False"
                   CanUserResizeColumns="True"
                   CanUserResizeRows="False"
                   CanUserReorderColumns="False">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding sp_id}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="ID" Binding="{Binding sp_item}" Width="auto"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <DataGrid Grid.Row="0"
-                  Grid.ColumnSpan="4"
-                  Width="340"
-                  x:Name="Product_DG" 
-                  IsReadOnly="True"
-                  HorizontalAlignment="Right"
-                  AutoGenerateColumns="False"
-                  CanUserResizeColumns="True"
-                  CanUserResizeRows="False"
-                  CanUserReorderColumns="False">
-
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding p_id}" Width="auto"></DataGridTextColumn>
-                <DataGridTextColumn Header="ID" Binding="{Binding p_name}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding s_id}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding s_name}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Site" Binding="{Binding s_site}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Description" Binding="{Binding s_description}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
         <Button Grid.Row="1"
                 Grid.Column="0"
-                Content="Закупить"
+                Content="Добавить"
                 Foreground="Black" 
                 Background="White"
                 FontFamily="EB Garamond" 
@@ -73,7 +56,7 @@
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center" 
                 HorizontalContentAlignment="Center"
-                Click="Button_Supply"/>
+                Click="Button_Add"/>
 
         <Button Grid.Row="1"
                 Grid.Column="1"
@@ -93,7 +76,7 @@
 
         <Button Grid.Row="1"
                 Grid.Column="2"
-                Content="..."
+                Content="~"
                 Foreground="Black" 
                 Background="White"
                 FontFamily="EB Garamond" 
@@ -105,7 +88,7 @@
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center" 
                 HorizontalContentAlignment="Center"
-                Click="Button_Supplier"/>
+                Click="Button_Edit"/>
 
         <Button Grid.Row="1"
                 Grid.Column="3"

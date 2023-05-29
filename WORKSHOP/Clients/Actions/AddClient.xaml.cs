@@ -2,7 +2,7 @@
 using System;
 using System.Windows;
 
-namespace WORKSHOP
+namespace WORKSHOP.Clients
 {
     public partial class AddClient : Window
     {
@@ -21,7 +21,7 @@ namespace WORKSHOP
             {
                 if (!(string.IsNullOrEmpty(fio.Text)
                     || string.IsNullOrEmpty(city.Text)
-                    || string.IsNullOrEmpty(address.Text) 
+                    || string.IsNullOrEmpty(address.Text)
                     || string.IsNullOrEmpty(phone_number.Text)))
                 {
                     using (NpgsqlConnection con = new(conString))
@@ -37,20 +37,18 @@ namespace WORKSHOP
 
                         con.Close();
                     }
-                    MessageBox.Show("Строка добавлена успешно.");
-
                     ClientsList ClientsList = new();
                     ClientsList.Show();
                     Close();
                 }
                 else
                 {
-                    MessageBox.Show("Заполните данные.");
+                    MessageBox.Show("Заполните данные.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка добавления строки.");
+                MessageBox.Show("Ошибка добавления строки.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

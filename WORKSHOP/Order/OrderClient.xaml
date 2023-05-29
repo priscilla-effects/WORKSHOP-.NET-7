@@ -34,7 +34,7 @@
                   CanUserReorderColumns="False">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Number" Binding="{Binding o_id}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding o_id}" Width="auto"></DataGridTextColumn>
 
                 <DataGridTextColumn Header="Full name" Binding="{Binding c_fio}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="City" Binding="{Binding c_city}" Width="auto"></DataGridTextColumn>
@@ -46,7 +46,7 @@
                 <DataGridTextColumn Header="Price" Binding="{Binding p_price}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="pID" Binding="{Binding p_id}" Width="auto"></DataGridTextColumn>
                 
-                <DataGridTextColumn Header="Date" Binding="{Binding o_date}" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding o_date}" Width="*"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>

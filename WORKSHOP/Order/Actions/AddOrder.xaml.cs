@@ -14,20 +14,14 @@ namespace WORKSHOP
         }
 
         readonly string conString = "Host=127.0.0.1;Port=5432;Database=postgres;Username=postgres;Password=1076;Include Error Detail=true;";
-        readonly string sql_client = "INSERT INTO public.\"Client\" " +
-            "(c_fio, c_city, c_address, c_phone) " +
-            "VALUES (@value1, @value2, @value3, @value4) RETURNING c_id;";
-        readonly string sql_order = "INSERT INTO public.\"Order\" " +
+        readonly string sql = "INSERT INTO public.\"Order\" " +
             "(c_id, p_id, o_date) " +
-            "VALUES (@value5, @value6, @value7);";
+            "VALUES (@value1, @value2, @value3);";
         private void Button_Add(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (!(string.IsNullOrEmpty(fio.Text)
-                    || string.IsNullOrEmpty(city.Text)
-                    || string.IsNullOrEmpty(address.Text)
-                    || string.IsNullOrEmpty(phone_number.Text)
+                if (!(string.IsNullOrEmpty(client.Text)
                     || string.IsNullOrEmpty(product.Text)
                     || string.IsNullOrEmpty(date.Text)))
                 {
@@ -35,36 +29,33 @@ namespace WORKSHOP
                     {
                         con.Open();
 
-                        using NpgsqlCommand cmd1 = new(sql_client, con);
-                        cmd1.Parameters.AddWithValue("value1", fio.Text);
-                        cmd1.Parameters.AddWithValue("value2", city.Text);
-                        cmd1.Parameters.AddWithValue("value3", address.Text);
-                        cmd1.Parameters.AddWithValue("value4", phone_number.Text);
-                        int id = Convert.ToInt32(cmd1.ExecuteScalar());
-
-                        using NpgsqlCommand cmd2 = new(sql_order, con);
-                        cmd2.Parameters.AddWithValue("value5", id);
-                        cmd2.Parameters.AddWithValue("value6", Int32.Parse(product.Text));
-                        cmd2.Parameters.AddWithValue("value7", date.Text);
-                        cmd2.ExecuteNonQuery();
+                        using NpgsqlCommand cmd = new(sql, con);
+                        cmd.Parameters.AddWithValue("value1", Int32.Parse(client.Text));
+                        cmd.Parameters.AddWithValue("value2", Int32.Parse(product.Text));
+                        cmd.Parameters.AddWithValue("value3", date.Text);
+                        cmd.ExecuteNonQuery();
 
                         con.Close();
                     }
-                    MessageBox.Show("Строка добавлена успешно.");
-
                     OrderClient OrderClient = new();
                     OrderClient.Show();
                     Close();
                 }
                 else
                 {
-                    MessageBox.Show("Заполните данные.");
+                    MessageBox.Show("Заполните данные.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка добавления строки.");
+                MessageBox.Show("Ошибка добавления строки.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Client(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void Product(object sender, TextCompositionEventArgs e)
